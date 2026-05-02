@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from typing import List
 from app.application.use_cases.empleado_service import EmpleadoService
-from app.api.dependencies.db import get_empleado_service
+from app.api.dependencies.services import get_empleado_service
 from app.api.schemas.empleado_schema import EmpleadoSchema, EmpleadoCreate, EmpleadoUpdate
 from app.domain.entities.empleado import Empleado
 
@@ -20,6 +20,7 @@ def crear_empleado(
         id_empleado=None,
         nombre=empleado.nombre,
         email=empleado.email,
+        password=empleado.password,
         rol=empleado.rol,
         area=empleado.area,
         activo=empleado.activo

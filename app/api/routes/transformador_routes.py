@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from typing import List
 from app.application.use_cases.transformador_service import TransformadorService
-from app.api.dependencies.db import get_transformador_service
+from app.api.dependencies.services import get_transformador_service
 from app.api.schemas.transformador_schema import TransformadorSchema, TransformadorCreate, TransformadorUpdate
 from app.domain.entities.transformador import Transformador
 
