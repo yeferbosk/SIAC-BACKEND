@@ -24,6 +24,7 @@ class EmpleadoRepositoryImpl(EmpleadoRepository):
         db_empleado = EmpleadoModel(
             nombre=empleado.nombre,
             email=empleado.email,
+            password=empleado.password,
             rol=empleado.rol,
             area=empleado.area,
             activo=empleado.activo
@@ -60,9 +61,11 @@ class EmpleadoRepositoryImpl(EmpleadoRepository):
         # 2. Aplicar los cambios
         db_emp.nombre = empleado.nombre
         db_emp.email = empleado.email
+        if empleado.password:
+            db_emp.password = empleado.password
         db_emp.rol = empleado.rol
         db_emp.area = empleado.area
-        db_emp.activo = empleado.activo # Permite reactivar o desactivar desde aquí también
+        db_emp.activo = empleado.activo
         
         # 3. Confirmar cambios
         self.db.commit()
@@ -94,6 +97,7 @@ class EmpleadoRepositoryImpl(EmpleadoRepository):
             id_empleado=model.id_empleado,
             nombre=model.nombre,
             email=model.email,
+            password=model.password,
             rol=model.rol,
             area=model.area,
             activo=model.activo

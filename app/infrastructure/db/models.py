@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, Enum, TIMESTAMP, Numeric, Boolean, ForeignKey, Text, DateTime
+from datetime import datetime
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 
@@ -26,6 +27,7 @@ class EmpleadoModel(Base):
     id_empleado = Column(Integer, primary_key=True, index=True)
     nombre = Column(String(120), nullable=False)
     email = Column(String(180), unique=True, nullable=False)
+    password = Column(String(255), nullable=False)
     rol = Column(Enum('administrativo', 'tecnico', 'gerente', 'chatbot'), nullable=False)
     area = Column(Enum('atencion_cliente', 'administrativa', 'tecnica', 'gerencia'), nullable=False)
     activo = Column(Boolean, default=True, nullable=False)
@@ -186,3 +188,16 @@ class RegistroFinancieroModel(Base):
 
     pedido = relationship("PedidoModel", back_populates="registros_financieros")
     empleado = relationship("EmpleadoModel", back_populates="registros_financieros")
+
+class AuditoriaLogModel(Base):
+    __tablename__ = 'auditoria_log'
+    id_log = Column(Integer, primary_key=True, autoincrement=True)
+    id_empleado = Column(Integer, ForeignKey('empleado.id_empleado'), nullable=True)
+    accion = Column(Enum('INSERT', 'UPDATE', 'DELETE'), nullable=False)
+    tabla_nombre = Column(String(50), nullable=False)
+    registro_id = Column(Integer, nullable=False)
+    detalle = Column(Text, nullable=True)
+    fecha = Column(DateTime, default=datetime.utcnow)
+
+    # Relación
+    empleado = relationship("EmpleadoModel")

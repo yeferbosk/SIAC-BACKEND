@@ -15,7 +15,7 @@ class EmpleadoCreate(EmpleadoBase):
     """
     Esquema para la creación de un empleado.
     """
-    pass
+    password: str
 
 class EmpleadoUpdate(BaseModel):
     """
@@ -24,6 +24,7 @@ class EmpleadoUpdate(BaseModel):
     """
     nombre: Optional[str] = None
     email: Optional[EmailStr] = None
+    password: Optional[str] = None
     rol: Optional[str] = None
     area: Optional[str] = None
     activo: Optional[bool] = None

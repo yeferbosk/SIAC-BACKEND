@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from typing import List
 from app.application.use_cases.pedido_service import PedidoService
-from app.api.dependencies.db import get_pedido_service
+from app.api.dependencies.services import get_pedido_service
 from app.api.schemas.pedido_schema import PedidoSchema, PedidoCreate
 from app.domain.entities.pedido import Pedido
 
