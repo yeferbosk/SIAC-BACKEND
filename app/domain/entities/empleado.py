@@ -8,4 +8,5 @@ class Empleado:
     email: str
     rol: str # 'administrativo', 'tecnico', 'gerente', 'chatbot'
     area: str # 'atencion_cliente', 'administrativa', 'tecnica', 'gerencia'
+    password: Optional[str] = None
     activo: bool = True
