@@ -6,7 +6,18 @@ from app.api.routes.pedido_routes import router as pedido_router
 from app.api.routes.auth_routes import router as auth_router
 from app.infrastructure.security.auth_handler import get_current_user
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI(title="SIAC API - Sistema Inteligente de Automatización Comercial")
+
+# Configuración de CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:4200"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Registro de Rutas
 # Nota: auth_router es público para el login. Los demás requieren token JWT.
